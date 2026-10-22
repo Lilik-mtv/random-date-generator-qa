@@ -1,0 +1,19 @@
+Test Case ID,Priority,Test Type,Scenario,Test Data / Steps,Expected Result,Status
+TC-001,P0,Functional,"Valid range, one date",Count=1; start=2026-01-01; end=2026-12-31; default format,Exactly 1 valid date within inclusive range,Not Run
+TC-002,P0,Boundary,Start date equals end date,Count=1; start=end=2024-02-29,Only valid result is 2024-02-29,Not Run
+TC-003,P0,Boundary,Leap day range,Count=20; start=2024-02-28; end=2024-03-01,Every result is a valid date in the inclusive 3-day range,Not Run
+TC-004,P0,Negative,Start date later than end date,start=2026-12-31; end=2026-01-01,Generation is blocked with a clear validation message; no misleading output,Not Run
+TC-005,P0,Negative,Impossible calendar date,Try start=2025-02-30 if input permits,"Invalid date is rejected, not silently normalized",Not Run
+TC-006,P0,Boundary,Cross-year range,start=2025-12-31; end=2026-01-01; count=20,Every result is either 2025-12-31 or 2026-01-01,Not Run
+TC-007,P1,Count validation,Count is zero,count=0; valid range,Clear validation or documented behavior; no unexpected results,Not Run
+TC-008,P1,Count validation,Negative count,count=-1; valid range,Input rejected with actionable message,Not Run
+TC-009,P1,Count validation,Non-integer count,"count=abc or 1.5, if field accepts typing",Invalid count rejected; page remains usable,Not Run
+TC-010,P1,Count validation,Large count,Enter a very large positive count,Supported limit enforced and communicated; browser remains responsive,Not Run
+TC-011,P1,Format,Each built-in output format,Repeat same narrow valid range for each option,Output matches selected format consistently,Not Run
+TC-012,P1,Custom format,Custom format with year-month-day tokens,Choose custom format; enter YYYY-MM-DD,Output matches documented token semantics,Not Run
+TC-013,P1,Custom format,Empty custom format,Choose custom format; leave custom format blank,Clear validation or documented fallback; no confusing output,Not Run
+TC-014,P1,Range boundary,Verify no output outside range,start=2026-04-10; end=2026-04-12; count=50,"Every generated date is 2026-04-10, 11, or 12",Not Run
+TC-015,P1,Calendar validity,Month/year transitions,start=2026-01-30; end=2026-02-03; count=30,All values are valid dates and remain within range,Not Run
+TC-016,P2,Usability,Keyboard-only operation,"Use Tab, Shift+Tab, keyboard selection and activation",Controls can be reached and used with visible focus,Not Run
+TC-017,P2,Usability,Validation message clarity,Trigger invalid range/count,Message identifies problem and corrective action,Not Run
+TC-018,P2,Regression,Regenerate repeatedly,Run valid input several times,Each run completes without stale/error output; every result remains valid,Not Run
